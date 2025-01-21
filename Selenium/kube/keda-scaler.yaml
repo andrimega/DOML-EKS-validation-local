@@ -1,0 +1,17 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: selenium-hpa
+  namespace: selenium
+  labels:
+    deploymentName: selenium-node-chrome
+spec:
+  minReplicaCount: 1
+  maxReplicaCount: 100
+  scaleTargetRef:
+    name: selenium-node-chrome
+  triggers:
+    - type: selenium-grid
+      metadata:
+        url: 'https://selenium-hub.selenium.svc.cluster.local:4444/graphql'
+        browserName: 'chrome'

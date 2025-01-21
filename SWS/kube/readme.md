@@ -1,7 +1,8 @@
 ## Resources
 List of resources to deploy on the cluster.
 
-metric-server: kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+metric-server: 
+    kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
     check with: kubectl get --raw "/apis/metrics.k8s.io/v1beta1/nodes"
     edit the deployment with: 
         kubectl patch deployment metrics-server -n kube-system --type='json' -p='[{
@@ -17,4 +18,5 @@ metric-server: kubectl apply -f https://github.com/kubernetes-sigs/metrics-serve
             ]
         }]'
 
-SWS: kubectl apply -f SWS.yaml
+SWS: 
+    kubectl apply -f sws.yaml

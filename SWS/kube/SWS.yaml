@@ -1,41 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: scalable-web-server
+  name: sws
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: scalable-web-server
+      app: sws
   template:
     metadata:
       labels:
-        app: scalable-web-server
+        app: sws
     spec:
       containers:
       - name: webserver
-        image: andreathesis/scalable-web-server
+        image: andreathesis/sws
         ports:
-        - containerPort: 5000
+        - containerPort: 80
         resources:
           requests:
-            cpu: 10m
+            cpu: 100m
           limits:
-            cpu: 20m
+            cpu: 200m
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: scalable-web-server-svc
+  name: sws-svc
 spec:
   selector:
-    app: scalable-web-server
+    app: sws
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 5000
+    targetPort: 80
   type: LoadBalancer
 
 ---
@@ -43,14 +43,14 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: scalable-web-server-hpa
+  name: sws-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: scalable-web-server
+    name: sws
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 10
   metrics:
   - type: Resource
     resource:
