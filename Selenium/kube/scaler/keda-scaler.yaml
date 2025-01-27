@@ -1,0 +1,20 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: selenium-hpa
+  namespace: selenium
+  labels:
+    deploymentName: selenium-node-chrome
+spec:
+  minReplicaCount: 1
+  maxReplicaCount: 100
+  scaleTargetRef:
+    name: selenium-node-chrome
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus-service.prometheus.svc.cluster.local:80
+        metricName: selenium_queue_size
+        query: |
+          selenium_queue_size
+        threshold: "5"  # Scale up if queue size > 5

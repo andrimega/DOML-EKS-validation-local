@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium-queue-exporter
+  namespace: selenium
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: selenium-queue-exporter
+  template:
+    metadata:
+      labels:
+        app: selenium-queue-exporter
+    spec:
+      containers:
+      - name: exporter
+        image: andreathesis/queue-size-exporter
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: selenium-queue-exporter
+  namespace: selenium
+spec:
+  selector:
+    app: selenium-queue-exporter
+  ports:
+  - port: 8080
+    targetPort: 8080
