@@ -10,5 +10,5 @@ The web server is hosted in a Kubernetes pod with autoscaling capabilities. The 
 ## Selenium Grid
 A selenium grid with autoscaling hosted on Kubernetes. The application will perform scraping on the SWS, and collect the average of the scraped value. A stress test will allow scaling up to 100 nodes, the hope is to stress also the server in order to cause autoscaling.
 
-## Distributed learning
-TBD
+## Cassandra
+https://github.com/kubernetes/examples
