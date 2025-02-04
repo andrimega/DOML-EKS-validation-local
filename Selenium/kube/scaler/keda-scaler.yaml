@@ -4,12 +4,12 @@ metadata:
   name: selenium-hpa
   namespace: selenium
   labels:
-    deploymentName: selenium-node-chrome
+    deploymentName: selenium-nodes-deployment
 spec:
   minReplicaCount: 1
   maxReplicaCount: 100
   scaleTargetRef:
-    name: selenium-node-chrome
+    name: selenium-nodes-deployment
   triggers:
     - type: prometheus
       metadata:
