@@ -1,0 +1,4 @@
+FROM selenium/node-chrome
+ENV SE_EVENT_BUS_HOST="selenium-hub-service-lb"
+ENV SE_EVENT_BUS_PUBLISH_PORT="4442"
+ENV SE_EVENT_BUS_SUBSCRIBE_PORT="4443"

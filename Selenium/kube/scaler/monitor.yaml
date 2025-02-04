@@ -1,12 +1,12 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: selenium-queue-exporter
+  name: selenium-grid-metric-exporter-service-ip
   namespace: selenium
 spec:
   selector:
     matchLabels:
-      app: selenium-queue-exporter
+      app: selenium-grid-metric-exporter-service-ip
   endpoints:
   - port: web
     interval: 10s

@@ -5,7 +5,7 @@ from prometheus_client.core import GaugeMetricFamily, REGISTRY
 
 app = Flask(__name__)
 
-SELENIUM_HUB_URL = "http://selenium-hub.selenium.svc.cluster.local:4444"
+SELENIUM_HUB_URL = "http://selenium-hub-service-lb.selenium.svc.cluster.local:4444"
 
 class SeleniumQueueSizeCollector:
     def collect(self):
